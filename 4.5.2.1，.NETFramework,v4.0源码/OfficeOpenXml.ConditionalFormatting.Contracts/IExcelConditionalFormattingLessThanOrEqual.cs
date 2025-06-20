@@ -1,0 +1,5 @@
+namespace OfficeOpenXml.ConditionalFormatting.Contracts;
+
+public interface IExcelConditionalFormattingLessThanOrEqual : IExcelConditionalFormattingRule, IExcelConditionalFormattingWithFormula
+{
+}

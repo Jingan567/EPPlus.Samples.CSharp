@@ -1,0 +1,6 @@
+namespace OfficeOpenXml.ConditionalFormatting.Contracts;
+
+public interface IExcelConditionalFormattingThreeColorScale : IExcelConditionalFormattingTwoColorScale, IExcelConditionalFormattingColorScaleGroup, IExcelConditionalFormattingRule
+{
+	ExcelConditionalFormattingColorScaleValue MiddleValue { get; set; }
+}

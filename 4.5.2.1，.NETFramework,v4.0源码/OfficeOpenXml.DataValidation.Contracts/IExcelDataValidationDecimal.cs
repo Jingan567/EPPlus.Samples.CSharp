@@ -1,0 +1,7 @@
+using OfficeOpenXml.DataValidation.Formulas.Contracts;
+
+namespace OfficeOpenXml.DataValidation.Contracts;
+
+public interface IExcelDataValidationDecimal : IExcelDataValidationWithFormula2<IExcelDataValidationFormulaDecimal>, IExcelDataValidationWithFormula<IExcelDataValidationFormulaDecimal>, IExcelDataValidation, IExcelDataValidationWithOperator
+{
+}

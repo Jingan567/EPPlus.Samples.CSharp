@@ -1,0 +1,6 @@
+namespace OfficeOpenXml.ConditionalFormatting.Contracts;
+
+public interface IExcelConditionalFormattingFiveIconSet : IExcelConditionalFormattingFourIconSet<eExcelconditionalFormatting5IconsSetType>, IExcelConditionalFormattingThreeIconSet<eExcelconditionalFormatting5IconsSetType>, IExcelConditionalFormattingIconSetGroup<eExcelconditionalFormatting5IconsSetType>, IExcelConditionalFormattingRule
+{
+	ExcelConditionalFormattingIconDataBarValue Icon5 { get; }
+}

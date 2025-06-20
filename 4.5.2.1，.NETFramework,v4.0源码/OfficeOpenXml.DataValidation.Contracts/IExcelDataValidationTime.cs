@@ -1,0 +1,7 @@
+using OfficeOpenXml.DataValidation.Formulas.Contracts;
+
+namespace OfficeOpenXml.DataValidation.Contracts;
+
+public interface IExcelDataValidationTime : IExcelDataValidationWithFormula2<IExcelDataValidationFormulaTime>, IExcelDataValidationWithFormula<IExcelDataValidationFormulaTime>, IExcelDataValidation, IExcelDataValidationWithOperator
+{
+}
