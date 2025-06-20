@@ -11,6 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="4.5.2.1，.NETFramework,v4.0源码\**" />
+    <EmbeddedResource Remove="4.5.2.1，.NETFramework,v4.0源码\**" />
+    <None Remove="4.5.2.1，.NETFramework,v4.0源码\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="FormulaCalcSample.xlsx" />
   </ItemGroup>
 

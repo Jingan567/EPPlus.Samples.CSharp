@@ -124,6 +124,7 @@ public sealed class ExcelPackage : IDisposable
 
 	public ZipPackage Package => _package;
 
+	
 	public ExcelEncryption Encryption
 	{
 		get
@@ -592,7 +593,8 @@ public sealed class ExcelPackage : IDisposable
 		{
 			if (_stream is MemoryStream && _stream.Length > 0)
 			{
-				CloseStream();
+                //关闭当前的流并创建一个新的空的内存流。
+                CloseStream();
 			}
 			Workbook.Save();
 			if (File == null)
@@ -691,7 +693,10 @@ public sealed class ExcelPackage : IDisposable
 		SaveAs(OutputStream);
 	}
 
-	internal void CloseStream()
+    /// <summary>
+    /// 关闭当前的流并创建一个新的空的内存流。
+    /// </summary>
+    internal void CloseStream()
 	{
 		if (_stream != null)
 		{
