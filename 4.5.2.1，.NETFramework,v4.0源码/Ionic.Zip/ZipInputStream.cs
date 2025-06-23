@@ -8,6 +8,9 @@ namespace Ionic.Zip;
 
 internal class ZipInputStream : Stream
 {
+	/// <summary>
+	/// 输入流，可能是文件流或者内存流
+	/// </summary>
 	private Stream _inputStream;
 
 	private Encoding _provisionalAlternateEncoding;
@@ -94,6 +97,7 @@ internal class ZipInputStream : Stream
 
 	public ZipInputStream(string fileName)
 	{
+		
 		Stream stream = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 		_Init(stream, leaveOpen: false, fileName);
 	}
@@ -111,8 +115,8 @@ internal class ZipInputStream : Stream
 			throw new ZipException("The stream must be readable.");
 		}
 		_container = new ZipContainer(this);
-		_provisionalAlternateEncoding = Encoding.GetEncoding("IBM437");
-		_leaveUnderlyingStreamOpen = leaveOpen;
+		_provisionalAlternateEncoding = Encoding.GetEncoding("IBM437");//就是这使用了IBM437编码
+        _leaveUnderlyingStreamOpen = leaveOpen;
 		_findRequired = true;
 		_name = name ?? "(stream)";
 	}
@@ -160,6 +164,7 @@ internal class ZipInputStream : Stream
 	{
 		if (_findRequired)
 		{
+			//等于-1代表未找到标志
 			if (SharedUtilities.FindSignature(_inputStream, 67324752) == -1)
 			{
 				return null;

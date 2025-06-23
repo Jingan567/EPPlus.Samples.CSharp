@@ -139,6 +139,12 @@ internal static class SharedUtilities
 		return ((array[3] * 256 + array[2]) * 256 + array[1]) * 256 + array[0];
 	}
 
+	/// <summary>
+	/// 查找标志位
+	/// </summary>
+	/// <param name="stream"></param>
+	/// <param name="SignatureToFind"></param>
+	/// <returns></returns>
 	internal static long FindSignature(Stream stream, int SignatureToFind)
 	{
 		long position = stream.Position;

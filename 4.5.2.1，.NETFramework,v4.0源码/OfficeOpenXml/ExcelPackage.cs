@@ -136,8 +136,10 @@ public sealed class ExcelPackage : IDisposable
 			return _encryption;
 		}
 	}
-
-	public ExcelWorkbook Workbook
+    /// <summary>
+    /// Excel工作簿对象，也是在Get里面进行初始化的。
+    /// </summary>
+    public ExcelWorkbook Workbook
 	{
 		get
 		{
@@ -146,14 +148,20 @@ public sealed class ExcelPackage : IDisposable
 				XmlNamespaceManager namespaceManager = CreateDefaultNSM();
 				_workbook = new ExcelWorkbook(this, namespaceManager);
 				_workbook.GetExternalReferences();
-				_workbook.GetDefinedNames();
+				_workbook.GetDefinedNames();//
 			}
 			return _workbook;
 		}
 	}
 
-	public bool DoAdjustDrawings { get; set; }
+    /// <summary>
+    /// 这个在这个类中，只在初始化的时候使用了一次赋值为True。
+    /// </summary>
+    public bool DoAdjustDrawings { get; set; }
 
+	/// <summary>
+	/// 文件信息类
+	/// </summary>
 	public FileInfo File
 	{
 		get
@@ -407,10 +415,12 @@ public sealed class ExcelPackage : IDisposable
 	private void Init()
 	{
 		DoAdjustDrawings = true;
+		//没想明白这个文本存储在什么位置
 		string text = ConfigurationManager.AppSettings["EPPlus:ExcelPackage.Compatibility.IsWorksheets1Based"];
 		if (text != null && bool.TryParse(text.ToLowerInvariant(), out var result))
 		{
-			Compatibility.IsWorksheets1Based = result;
+            //成功就将值赋给过去
+            Compatibility.IsWorksheets1Based = result;
 		}
 	}
 
@@ -450,9 +460,14 @@ public sealed class ExcelPackage : IDisposable
 		}
 		throw new Exception("Passed invalid TemplatePath to Excel Template");
 	}
-
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="password">无密码</param>
+	/// <exception cref="Exception"></exception>
 	private void ConstructNewFile(string password)
 	{
+		//创建内存流
 		MemoryStream stream = new MemoryStream();
 		if (_stream == null)
 		{
@@ -460,7 +475,7 @@ public sealed class ExcelPackage : IDisposable
 		}
 		if (File != null)
 		{
-			File.Refresh();
+			File.Refresh();//刷新状态
 		}
 		if (File != null && File.Exists)
 		{
@@ -473,11 +488,12 @@ public sealed class ExcelPackage : IDisposable
 			}
 			else
 			{
-				WriteFileToStream(File.FullName, stream);
-			}
+                //将文件流写入到内存流stream
+                WriteFileToStream(File.FullName, stream);
+            }
 			try
 			{
-				_package = new ZipPackage(stream);
+				_package = new ZipPackage(stream);//给过去的是内存流
 				return;
 			}
 			catch (Exception innerException)
@@ -489,7 +505,7 @@ public sealed class ExcelPackage : IDisposable
 				throw;
 			}
 		}
-		_package = new ZipPackage(stream);
+		_package = new ZipPackage(stream);//这个是决定编码方式的重点
 		CreateBlankWb();
 	}
 

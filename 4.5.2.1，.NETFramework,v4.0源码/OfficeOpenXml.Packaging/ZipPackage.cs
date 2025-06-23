@@ -61,7 +61,10 @@ public class ZipPackage : ZipPackageRelationshipBase
 		AddNew();
 	}
 
-	private void AddNew()
+    /// <summary>
+    /// 增加默认的ContentTypes
+    /// </summary>
+    private void AddNew()
 	{
 		_contentTypes.Add("xml", new ContentType("application/xml", isExtension: true, "xml"));
 		_contentTypes.Add("rels", new ContentType("application/vnd.openxmlformats-package.relationships+xml", isExtension: true, "rels"));

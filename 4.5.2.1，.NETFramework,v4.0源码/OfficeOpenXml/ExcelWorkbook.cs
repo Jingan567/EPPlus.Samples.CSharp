@@ -161,7 +161,10 @@ public sealed class ExcelWorkbook : XmlHelper, IDisposable
 		}
 	}
 
-	public ExcelProtection Protection
+    /// <summary>
+    /// ExcelProtection继承XmlHelper是在这里初始化的
+    /// </summary>
+    public ExcelProtection Protection
 	{
 		get
 		{
