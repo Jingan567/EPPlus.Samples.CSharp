@@ -4,7 +4,11 @@ public class CompatibilitySettings
 {
 	private ExcelPackage excelPackage;
 
-	public bool IsWorksheets1Based
+    /// <summary>
+    /// 默认情况下，工作表索引从 0 开始。
+	/// 在 .NET Framework 中，您可以通过设置 Compatibility.IsWorksheets1Based = true 来更改此行为。
+    /// </summary>
+    public bool IsWorksheets1Based
 	{
 		get
 		{
